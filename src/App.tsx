@@ -2,11 +2,17 @@ import { useState } from "react";
 import {
   Button,
   Label,
-  Radio,
-  RadioGroup,
+  ListBox,
+  ListBoxItem,
+  Switch,
   TextField,
 } from "react-aria-components";
-import { IconThanks } from "./components/Icons";
+import {
+  IconAdvanced,
+  IconArcade,
+  IconPro,
+  IconThanks,
+} from "./components/Icons";
 
 function App() {
   const [step, setStep] = useState(0);
@@ -81,7 +87,7 @@ function App() {
           ) : step == 1 ? (
             <form
               action=""
-              className="absolute top-[-3rem] left-4 bg-neutral-5 rounded-xl p-8"
+              className="absolute top-[-3rem] left-4 bg-neutral-5 rounded-xl p-8 flex flex-col gap-4"
             >
               <h2 className="text-primary-1 text-2xl font-bold">
                 Select your plan
@@ -89,43 +95,60 @@ function App() {
               <p className="text-neutral-1">
                 You have the option of monthly or yearly billing.
               </p>
-              <RadioGroup>
-                <Radio>
+
+              <ListBox
+                aria-label="Plan options"
+                selectionMode="single"
+                className="flex flex-col gap-4"
+              >
+                <ListBoxItem className="rounded-lg border border-neutral-2 border-solid p-4 flex flex-row gap-4">
                   <picture>
-                    <img src="" alt="" />
+                    <IconArcade></IconArcade>
                   </picture>
-                  <div>
-                    <span>Arcade</span>
-                    <span>$9/mo</span>
-                    <span>2 months free</span>
+                  <div className="flex flex-col gap-1">
+                    <span className="text-primary-1 font-bold">Arcade</span>
+                    <span className="text-neutral-1">$9/mo</span>
+                    <span className="text-primary-1 font-medium">
+                      2 months free
+                    </span>
                   </div>
-                </Radio>
-                <Radio>
+                </ListBoxItem>
+                <ListBoxItem className="rounded-lg border border-neutral-2 border-solid p-4 flex flex-row gap-4">
                   <picture>
-                    <img src="" alt="" />
+                    <IconAdvanced></IconAdvanced>
                   </picture>
-                  <div>
-                    <span>Advanced</span>
-                    <span>$12/mo</span>
-                    <span>2 months free</span>
+                  <div className="flex flex-col gap-1">
+                    <span className="text-primary-1 font-bold">Advanced</span>
+                    <span className="text-neutral-1">$12/mo</span>
+                    <span className="text-primary-1 font-medium">
+                      2 months free
+                    </span>
                   </div>
-                </Radio>
-                <Radio>
+                </ListBoxItem>
+                <ListBoxItem className="rounded-lg border border-neutral-2 border-solid p-4 flex flex-row gap-4">
                   <picture>
-                    <img src="" alt="" />
+                    <IconPro></IconPro>
                   </picture>
-                  <div>
-                    <span>Pro</span>
-                    <span>$15/mo</span>
-                    <span>2 months free</span>
+                  <div className="flex flex-col gap-1">
+                    <span className="text-primary-1 font-bold">Pro</span>
+                    <span className="text-neutral-1">$15/mo</span>
+                    <span className="text-primary-1 font-medium">
+                      2 months free
+                    </span>
                   </div>
-                </Radio>
-              </RadioGroup>
-              <div>
+                </ListBoxItem>
+              </ListBox>
+
+              <Switch className="flex flex-row items-center justify-center gap-2 bg-neutral-3 p-2 rounded-lg text-neutral-1 font-medium">
                 <span>Monthly</span>
-                {/* slider */}
+                <div className="bg-primary-1 rounded-xl w-10 h-5"></div>
+
+                {/*       <div className="flex h-[26px] w-[44px] shrink-0 cursor-default rounded-full shadow-inner bg-clip-padding border border-solid border-white/30 p-[3px] box-border transition duration-200 ease-in-out bg-yellow-600 group-pressed:bg-yellow-700 group-selected:bg-amber-800 group-selected:group-pressed:bg-amber-900 outline-none group-focus-visible:ring-2 ring-black">
+      <span className="h-[18px] w-[18px] transform rounded-full bg-white shadow transition duration-200 ease-in-out translate-x-0 group-selected:translate-x-[100%]" />
+    </div> */}
+
                 <span>Yearly</span>
-              </div>
+              </Switch>
             </form>
           ) : step == 2 ? (
             <form
