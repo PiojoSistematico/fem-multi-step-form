@@ -13,16 +13,19 @@ import {
   IconPro,
   IconThanks,
 } from "./components/Icons";
+import CustomForm from "./components/CustomForm";
 
 function App() {
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(1);
 
   function handleNext(): void {
     setStep((prev) => prev + 1);
   }
   function handleBack(): void {
-    setStep((prev) => prev - 1);
+    setStep((prev) => (prev == 1 ? 1 : prev - 1));
   }
+
+  const [formData, setFormData] = useState({});
 
   return (
     <>
@@ -60,6 +63,10 @@ function App() {
           </ol>
         </header>
         <section title="form-wrapper" className="w-11/12 h-full p-4 relative">
+          <CustomForm step={step}></CustomForm>
+        </section>
+
+        {/* <section title="form-wrapper" className="w-11/12 h-full p-4 relative">
           {step == 0 ? (
             <form
               action=""
@@ -142,11 +149,6 @@ function App() {
               <Switch className="flex flex-row items-center justify-center gap-2 bg-neutral-3 p-2 rounded-lg text-neutral-1 font-medium">
                 <span>Monthly</span>
                 <div className="bg-primary-1 rounded-xl w-10 h-5"></div>
-
-                {/*       <div className="flex h-[26px] w-[44px] shrink-0 cursor-default rounded-full shadow-inner bg-clip-padding border border-solid border-white/30 p-[3px] box-border transition duration-200 ease-in-out bg-yellow-600 group-pressed:bg-yellow-700 group-selected:bg-amber-800 group-selected:group-pressed:bg-amber-900 outline-none group-focus-visible:ring-2 ring-black">
-      <span className="h-[18px] w-[18px] transform rounded-full bg-white shadow transition duration-200 ease-in-out translate-x-0 group-selected:translate-x-[100%]" />
-    </div> */}
-
                 <span>Yearly</span>
               </Switch>
             </form>
@@ -221,7 +223,7 @@ function App() {
               </picture>
             </div>
           )}
-        </section>
+        </section> */}
         <footer className="bg-neutral-5 p-4 flex flex-row items-center justify-between">
           <Button
             onPress={handleBack}
